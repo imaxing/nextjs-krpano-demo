@@ -22,7 +22,14 @@ export default function App() {
   }, [])
 
   if (loading) {
-    return <div>loading</div>
+    return (
+      <div
+        style={{ background: 'rgba(0, 0, 0, 0.8)' }}
+        className='fixed w-screen h-screen left-0 top-0 z-[20] flex items-center justify-center text-[#fff]'
+      >
+        loading...
+      </div>
+    )
   }
   return (
     <div>
