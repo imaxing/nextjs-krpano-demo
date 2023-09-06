@@ -41,6 +41,6 @@ export const getScenes = () => {
           ]
         }
       ])
-    }, 2000)
+    }, 1000)
   })
 }
