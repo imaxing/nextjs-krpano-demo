@@ -35,7 +35,7 @@ export default function App() {
     <div>
       {
         // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
-        <Script strategy='beforeInteractive' src='https://0xllllh.github.io/react-krpano-examples/krpano.js'></Script>
+        <Script strategy='beforeInteractive' src='https://www.yeecai.com/cheshi/3dfly/dist/krpano/krpano.js'></Script>
       }
 
       {showBackButton && (
