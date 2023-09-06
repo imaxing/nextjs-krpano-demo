@@ -12,6 +12,7 @@ export const getScenes = () => {
           ],
           spots: [
             {
+              data: 'f92ma30lnsf',
               name: 'hotspot0',
               type: 'image',
               ath: 50,
@@ -30,6 +31,7 @@ export const getScenes = () => {
           ],
           spots: [
             {
+              data: 'b4cma57llea',
               name: 'hotspot0',
               type: 'image',
               ath: -50,

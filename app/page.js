@@ -3,13 +3,13 @@ import Script from 'next/script'
 import { getScenes } from '@/utils/mock'
 import { useState, useEffect } from 'react'
 import ScenesSwitch from '@/components/scenes-switch'
-import { Krpano, Scene, View, Hotspot } from '@0xllllh/react-krpano'
+import { Krpano, Scene, View, Hotspot, Events } from '@0xllllh/react-krpano'
 
 export default function App() {
   const [scenes, setScenes] = useState([])
   const [loading, setLoading] = useState(false)
   const [scene, setScene] = useState('')
-  const [showIframe, setShowIframe] = useState(false)
+  const [showIframe, setShowIframe] = useState('')
   const [showBackButton, setShowBackButton] = useState(false)
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function App() {
         <button
           className='fixed left-[20px] z-[11] top-[20px] bg-[#0F0F0F] text-[#fff] px-[15px] py-[8px] rounded-md'
           onClick={() => {
-            setShowIframe(false)
+            setShowIframe('')
             setShowBackButton(false)
           }}
         >
@@ -48,7 +48,7 @@ export default function App() {
           <iframe
             onLoad={() => setShowBackButton(true)}
             className='w-full h-full'
-            src='https://www.720yun.com/3dm/f92ma30lnsf'
+            src={`https://www.720yun.com/3dm/${showIframe}`}
           />
         </div>
       )}
@@ -56,7 +56,7 @@ export default function App() {
       <ScenesSwitch
         value={scene}
         onChange={scene => setScene(scene.name)}
-        className='fixed !h-[100px] w-1/2 shadow-debug bottom-[20px] z-[20]'
+        className='fixed !h-[100px] w-1/2 bottom-[20px] z-[20]'
         scenes={scenes}
       />
 
@@ -66,13 +66,23 @@ export default function App() {
           return (
             <Scene key={name} name={name} images={images}>
               {spots.map(spot => {
-                return <Hotspot key={spot.name} {...spot} onClick={() => setShowIframe(true)} />
+                return <Hotspot key={spot.name} {...spot} onClick={() => setShowIframe(spot.data)} />
               })}
             </Scene>
           )
         })}
 
         <View fov={90} fovmin={80} fovmax={120} />
+
+        <Events
+          onClick={renderer => {
+            console.log(renderer)
+            // renderer.addHotspot('hot' + Date.now(), {
+            //   type: 'image',
+            //   url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
+            // })
+          }}
+        />
       </Krpano>
     </div>
   )
