@@ -1,12 +1,29 @@
 'use client'
-
-import { useState } from 'react'
 import Script from 'next/script'
+import { getScenes } from '@/utils/mock'
+import { useState, useEffect } from 'react'
+import ScenesSwitch from '@/components/scenes-switch'
 import { Krpano, Scene, View, Hotspot } from '@0xllllh/react-krpano'
 
 export default function App() {
+  const [scenes, setScenes] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [scene, setScene] = useState('')
   const [showIframe, setShowIframe] = useState(false)
   const [showBackButton, setShowBackButton] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    getScenes().then(data => {
+      setScenes(data)
+      setScene(data[0].name)
+      setLoading(false)
+    })
+  }, [])
+
+  if (loading) {
+    return <div>loading</div>
+  }
   return (
     <div>
       {
@@ -35,34 +52,26 @@ export default function App() {
           />
         </div>
       )}
-      <Krpano currentScene='scene0'>
-        <Scene
-          name='scene0'
-          images={[
-            {
-              type: 'cube',
-              url: 'https://qhyxpicoss.kujiale.com/r/2017/09/01/L3D221IS3QKUQUQBOGAPEK3P3XU888_7500x1250.jpg_%s'
-            }
-          ]}
-        >
-          <Hotspot
-            name='hotspot0'
-            type='image'
-            url='https://0xllllh.github.io/krpano-examples/images/hotspot.png'
-            ath={-50}
-            atv={20}
-            onClick={() => setShowIframe(true)}
-          />
-        </Scene>
-        <Scene
-          name='scene1'
-          images={[
-            {
-              type: 'cube',
-              url: 'https://qhyxpicoss.kujiale.com/r/2017/09/01/L3D221IS3QKUQUQBOGAPEK3P3XU888_7500x1250.jpg_%s'
-            }
-          ]}
-        />
+
+      <ScenesSwitch
+        value={scene}
+        onChange={scene => setScene(scene.name)}
+        className='fixed !h-[100px] w-1/2 shadow-debug bottom-[20px] z-[20]'
+        scenes={scenes}
+      />
+
+      <Krpano currentScene={scene}>
+        {scenes.map(scene => {
+          const { spots = [], images = [], name } = scene
+          return (
+            <Scene key={name} name={name} images={images}>
+              {spots.map(spot => {
+                return <Hotspot key={spot.name} {...spot} onClick={() => setShowIframe(true)} />
+              })}
+            </Scene>
+          )
+        })}
+
         <View fov={90} fovmin={80} fovmax={120} />
       </Krpano>
     </div>
