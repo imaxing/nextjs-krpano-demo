@@ -6,7 +6,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
 import React, { useEffect } from 'react'
 import { useWindowSize } from '@uidotdev/usehooks'
+// import GLTF from '@/components/gltf'
 export default function ModelViewer({ model }) {
+  // if (model.url.endsWith('.gltf')) return <GLTF path={model.url} />
   const size = useWindowSize()
   useEffect(() => {
     let camera, scene, renderer
