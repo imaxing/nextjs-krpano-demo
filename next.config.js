@@ -3,5 +3,5 @@
 module.exports = {
   output: 'export',
   distDir: 'dist',
-  basePath: '/cheshi/3dtest'
+  basePath: process.env.NODE_ENV === 'development' ? '' : '/cheshi/3dtest'
 }
