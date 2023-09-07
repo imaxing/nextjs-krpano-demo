@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
 import React, { useEffect } from 'react'
 import { useWindowSize } from '@uidotdev/usehooks'
-export default function ModelViewer({ model }) {
+export default function ModelViewer({ model, onReady }) {
   const size = useWindowSize()
   useEffect(() => {
     let camera, scene, renderer
@@ -15,14 +15,13 @@ export default function ModelViewer({ model }) {
       const container = document.getElementById('container')
 
       camera = new THREE.PerspectiveCamera(45, size.width / size.height, 0.25, 20)
-      camera.position.set(2.5, 1.5, 3.0)
+      camera.position.set(2.5, 1.5, 7.0)
 
       scene = new THREE.Scene()
 
       new RGBELoader().setPath('').load(model.background, texture => {
         texture.mapping = THREE.EquirectangularReflectionMapping
 
-        scene.background = texture
         scene.environment = texture
 
         render()
@@ -48,7 +47,11 @@ export default function ModelViewer({ model }) {
       controls.maxDistance = 10
       controls.target.set(0, 0.5, -0.2)
       controls.update()
+      onResize()
+      onReady && onReady()
+    }
 
+    const onResize = () => {
       camera.aspect = size.width / size.height
       camera.updateProjectionMatrix()
 
@@ -61,6 +64,12 @@ export default function ModelViewer({ model }) {
 
     init()
     render()
+
+    window.addEventListener('resize', onResize, false)
+
+    return () => {
+      window.removeEventListener('resize', onResize, false)
+    }
   }, [model, size])
 
   return <div id='container'></div>

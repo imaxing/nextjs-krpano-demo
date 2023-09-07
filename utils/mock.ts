@@ -41,9 +41,9 @@ export const getScenes = () => {
                 background:
                   'https://www.yeecai.com/cheshi/ar/three.js-dev/examples/textures/equirectangular/quarry_01_1k.hdr',
                 url: 'https://www.yeecai.com/cheshi/ar/three.js-dev/examples/models/gltf/MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf',
-                x: 10.0,
-                y: 10.0,
-                z: 10.0
+                x: 5.0,
+                y: 5.0,
+                z: 5.0
               },
               name: 'hotspot0',
               type: 'image',
