@@ -22,22 +22,21 @@ export const getScenes = () => {
               name: 'hotspot0',
               type: 'image',
               ath: -50,
-              atv: 10,
+              atv: 20,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             },
             {
               data: {
                 background: 'https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr',
-                dir: '/model',
-                url: '/demo.glb',
-                x: 100,
-                y: 100,
-                z: 100
+                url: 'https://www.yeecai.com/cheshi/ar/module/test1.glb',
+                x: 1,
+                y: 1,
+                z: 1
               },
-              name: 'hotspot1',
+              name: 'hotspot2',
               type: 'image',
-              ath: 0,
-              atv: 10,
+              ath: 50,
+              atv: 20,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             }
           ]
@@ -63,12 +62,12 @@ export const getScenes = () => {
               name: 'hotspot0',
               type: 'image',
               ath: 50,
-              atv: 10,
+              atv: 0,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             }
           ]
         }
       ])
-    }, 1000)
+    }, 200)
   })
 }
