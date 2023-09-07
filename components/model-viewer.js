@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
 import React, { useEffect } from 'react'
 import { useWindowSize } from '@uidotdev/usehooks'
-export default function ModelViewer({ model, onReady }) {
+export default function ModelViewer({ model }) {
   const size = useWindowSize()
   useEffect(() => {
     let camera, scene, renderer
@@ -30,14 +30,6 @@ export default function ModelViewer({ model, onReady }) {
         const loader = new GLTFLoader().setPath(model.dir || '')
         loader.load(model.url, gltf => {
           gltf.scene.scale.set(model.x, model.y, model.z)
-
-          if (model.url.endsWith('.glb')) {
-            const axis = new THREE.Vector3(0, 1, 0)
-            gltf.scene.rotateOnAxis(axis, Math.PI / 2)
-            //绕axis轴逆旋转π/16
-            gltf.scene.rotateOnAxis(axis, Math.PI / -20)
-            gltf.scene.rotateOnAxis(axis, Math.PI / 50)
-          }
           scene.add(gltf.scene)
           render()
         })
@@ -57,7 +49,6 @@ export default function ModelViewer({ model, onReady }) {
       controls.target.set(0, 0.5, -0.2)
       controls.update()
       onResize()
-      onReady && onReady()
     }
 
     const onResize = () => {
