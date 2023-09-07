@@ -2,5 +2,6 @@
 
 module.exports = {
   output: 'export',
-  distDir: 'dist'
+  distDir: 'dist',
+  basePath: '/cheshi/3dtest'
 }
