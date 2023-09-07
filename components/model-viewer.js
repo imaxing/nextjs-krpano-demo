@@ -18,6 +18,7 @@ export default function ModelViewer({ model, onReady }) {
       camera.position.set(2.5, 1.5, 7.0)
 
       scene = new THREE.Scene()
+      camera.lookAt(scene.position)
 
       new RGBELoader().setPath('').load(model.background, texture => {
         texture.mapping = THREE.EquirectangularReflectionMapping
@@ -26,9 +27,17 @@ export default function ModelViewer({ model, onReady }) {
 
         render()
 
-        const loader = new GLTFLoader().setPath('')
+        const loader = new GLTFLoader().setPath(model.dir || '')
         loader.load(model.url, gltf => {
           gltf.scene.scale.set(model.x, model.y, model.z)
+
+          if (model.url.endsWith('.glb')) {
+            const axis = new THREE.Vector3(0, 1, 0)
+            gltf.scene.rotateOnAxis(axis, Math.PI / 2)
+            //绕axis轴逆旋转π/16
+            gltf.scene.rotateOnAxis(axis, Math.PI / -20)
+            gltf.scene.rotateOnAxis(axis, Math.PI / 50)
+          }
           scene.add(gltf.scene)
           render()
         })
