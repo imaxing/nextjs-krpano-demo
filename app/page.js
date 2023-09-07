@@ -1,5 +1,4 @@
 'use client'
-import Script from 'next/script'
 import { getScenes } from '@/utils/mock'
 import { useState, useEffect } from 'react'
 import ScenesSwitch from '@/components/scenes-switch'
@@ -23,15 +22,10 @@ export default function App() {
     })
   }, [])
 
-  if (loading) return <Loading />
+  if (loading || !scenes.length) return <Loading />
 
   return (
     <div>
-      {
-        // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
-        <Script strategy='beforeInteractive' src='https://www.yeecai.com/cheshi/3dfly/dist/krpano/krpano.js'></Script>
-      }
-
       {model.url ? (
         <FullFixedWrapper className='flex items-center justify-center'>
           <ModelViewer model={model} />
