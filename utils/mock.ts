@@ -12,7 +12,13 @@ export const getScenes = () => {
           ],
           spots: [
             {
-              data: 'f92ma30lnsf',
+              data: {
+                background: 'https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr',
+                url: 'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
+                x: 2.0,
+                y: 2.0,
+                z: 2.0
+              },
               name: 'hotspot0',
               type: 'image',
               ath: 50,
@@ -31,7 +37,14 @@ export const getScenes = () => {
           ],
           spots: [
             {
-              data: 'b4cma57llea',
+              data: {
+                background:
+                  'https://www.yeecai.com/cheshi/ar/three.js-dev/examples/textures/equirectangular/quarry_01_1k.hdr',
+                url: 'https://www.yeecai.com/cheshi/ar/three.js-dev/examples/models/gltf/MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf',
+                x: 10.0,
+                y: 10.0,
+                z: 10.0
+              },
               name: 'hotspot0',
               type: 'image',
               ath: -50,
