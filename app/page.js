@@ -12,8 +12,7 @@ export default function App() {
   const [scenes, setScenes] = useState([])
   const [loading, setLoading] = useState(false)
   const [scene, setScene] = useState('')
-  const [showIframe, setShowIframe] = useState('')
-  const [showBackButton, setShowBackButton] = useState(false)
+  const [model, setModel] = useState({})
 
   useEffect(() => {
     setLoading(true)
@@ -33,21 +32,16 @@ export default function App() {
         <Script strategy='beforeInteractive' src='https://www.yeecai.com/cheshi/3dfly/dist/krpano/krpano.js'></Script>
       }
 
-      {showBackButton && (
-        <button
-          className='fixed left-[20px] z-[11] top-[20px] bg-[#0F0F0F] text-[#fff] px-[15px] py-[8px] rounded-md'
-          onClick={() => {
-            setShowIframe('')
-            setShowBackButton(false)
-          }}
-        >
-          返回
-        </button>
-      )}
-
-      {showIframe && (
+      {model.url && (
         <FullFixedWrapper className='flex items-center justify-center'>
-          <ModelViewer path='/tree.gltf' />
+          <ModelViewer model={model} />
+
+          <button
+            className='fixed left-[20px] z-[99999999999999] top-[20px] bg-[#0F0F0F] text-[#fff] px-[15px] py-[8px] rounded-md'
+            onClick={() => setModel({})}
+          >
+            返回
+          </button>
         </FullFixedWrapper>
       )}
 
@@ -64,7 +58,7 @@ export default function App() {
           return (
             <Scene key={name} name={name} images={images}>
               {spots.map(spot => {
-                return <Hotspot key={spot.name} {...spot} onClick={() => setShowIframe(spot.data)} />
+                return <Hotspot key={spot.name} {...spot} onClick={() => setModel(spot.data)} />
               })}
             </Scene>
           )
@@ -75,10 +69,6 @@ export default function App() {
         <Events
           onClick={renderer => {
             console.log(renderer)
-            // renderer.addHotspot('hot' + Date.now(), {
-            //   type: 'image',
-            //   url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
-            // })
           }}
         />
       </Krpano>
