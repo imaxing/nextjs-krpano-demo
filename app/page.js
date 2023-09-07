@@ -3,6 +3,9 @@ import Script from 'next/script'
 import { getScenes } from '@/utils/mock'
 import { useState, useEffect } from 'react'
 import ScenesSwitch from '@/components/scenes-switch'
+import ModelViewer from '@/components/model-viewer'
+import Loading from '@/components/loading'
+import FullFixedWrapper from '@/components/full-fixed-wrapper'
 import { Krpano, Scene, View, Hotspot, Events } from '@0xllllh/react-krpano'
 
 export default function App() {
@@ -21,16 +24,8 @@ export default function App() {
     })
   }, [])
 
-  if (loading) {
-    return (
-      <div
-        style={{ background: 'rgba(0, 0, 0, 0.8)' }}
-        className='fixed w-screen h-screen left-0 top-0 z-[20] flex items-center justify-center text-[#fff]'
-      >
-        loading...
-      </div>
-    )
-  }
+  if (loading) return <Loading />
+
   return (
     <div>
       {
@@ -51,13 +46,9 @@ export default function App() {
       )}
 
       {showIframe && (
-        <div className='fixed w-screen h-screen left-0 top-0 z-10'>
-          <iframe
-            onLoad={() => setShowBackButton(true)}
-            className='w-full h-full'
-            src={`https://www.720yun.com/3dm/${showIframe}`}
-          />
-        </div>
+        <FullFixedWrapper className='flex items-center justify-center'>
+          <ModelViewer path='/tree.gltf' />
+        </FullFixedWrapper>
       )}
 
       <ScenesSwitch
