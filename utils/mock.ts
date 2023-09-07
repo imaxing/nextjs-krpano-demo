@@ -21,7 +21,7 @@ export const getScenes = () => {
               },
               name: 'hotspot0',
               type: 'image',
-              ath: 50,
+              ath: -50,
               atv: 10,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             }
@@ -47,7 +47,7 @@ export const getScenes = () => {
               },
               name: 'hotspot0',
               type: 'image',
-              ath: -50,
+              ath: 50,
               atv: 10,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             }
