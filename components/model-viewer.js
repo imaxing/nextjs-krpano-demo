@@ -5,14 +5,13 @@ import { OrbitControls, Environment, Html, useProgress } from '@react-three/drei
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 export default function ModelViewer({ model }) {
-  const { nodes, /* materials,*/ scene } = useLoader(GLTFLoader, model.url)
-  console.log(nodes)
+  const { scene } = useLoader(GLTFLoader, model.url)
   const { progress } = useProgress()
   return (
     <Canvas>
       <Suspense fallback={<Html center>{progress} % loaded</Html>}>
-        <primitive object={scene} scale={model.url.endsWith('.glb') ? 0.3 : 1} />
-        <OrbitControls autoRotate />
+        <primitive object={scene} scale={model.url.endsWith('.glb') ? 0.2 : 1} />
+        <OrbitControls />
         <Environment preset='sunset' />
       </Suspense>
     </Canvas>

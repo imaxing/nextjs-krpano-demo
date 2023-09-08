@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <div>
-      {model.url ? (
+      {model.url && (
         <FullFixedWrapper className='flex items-center justify-center'>
           <ModelViewer model={model} />
 
@@ -37,13 +37,6 @@ export default function App() {
             返回
           </button>
         </FullFixedWrapper>
-      ) : (
-        <ScenesSwitch
-          value={scene}
-          onChange={scene => setScene(scene.name)}
-          className='fixed !h-[100px] w-1/2 bottom-[20px] z-[20]'
-          scenes={scenes}
-        />
       )}
 
       <Krpano currentScene={scene}>
