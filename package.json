@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@0xllllh/react-krpano": "^0.1.5",
-    "@uidotdev/usehooks": "^2.2.0",
+    "@react-three/drei": "^9.83.3",
+    "@react-three/fiber": "^8.14.1",
     "axios": "^1.5.0",
     "classnames": "^2.3.2",
     "next": "13.4.19",

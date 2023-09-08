@@ -52,6 +52,20 @@ export const getScenes = () => {
               ath: 50,
               atv: 20,
               url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
+            },
+            {
+              data: {
+                background: 'https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr',
+                url: 'https://www.yeecai.com/cheshi/models/Model.glb',
+                x: 1,
+                y: 1,
+                z: 1
+              },
+              name: 'hotspot4',
+              type: 'image',
+              ath: 30,
+              atv: 30,
+              url: 'https://0xllllh.github.io/krpano-examples/images/hotspot.png'
             }
           ]
         },
