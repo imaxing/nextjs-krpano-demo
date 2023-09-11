@@ -6,8 +6,8 @@ export default function SingleScene(props) {
   return (
     <Krpano currentScene='scene'>
       <Scene name='scene' images={props.images}>
-        {props.spots?.map((spot, index) => (
-          <Hotspot key={spot.name} {...spot} onClick={() => props.onSpotClick?.(spot, index)} />
+        {(props.spots || []).map((spot, index) => (
+          <Hotspot key={spot.name} {...spot} onClick={() => props.onSpotClick && props.onSpotClick?.(spot, index)} />
         ))}
       </Scene>
 
@@ -17,7 +17,7 @@ export default function SingleScene(props) {
         onClick={renderer => {
           const { krpanoRenderer } = renderer
           const { x, y, z } = krpanoRenderer.screentosphere(renderer.get('mouse.x'), renderer.get('mouse.y'))
-          props.onClick?.({ x, y, z })
+          props.onClick && props.onClick({ x, y, z })
         }}
       />
     </Krpano>

@@ -10,7 +10,7 @@ export default function ModelPreview(props) {
 
       <button
         className='fixed left-[20px] z-[99999999999999] top-[20px] bg-[#0F0F0F] text-[#fff] px-[15px] py-[8px] rounded-md'
-        onClick={() => props.onBack?.()}
+        onClick={() => props.onBack && props.onBack()}
       >
         返回
       </button>
