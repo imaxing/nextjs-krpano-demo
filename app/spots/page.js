@@ -11,7 +11,7 @@ export default function HotSpots(props) {
     setSpots(spots => [
       ...spots,
       {
-        name: `spot-${spots.length}`,
+        name: `spot-${spots.length + 1}`,
         ath: x,
         atv: y,
         url: `https://www.yeecai.com/cheshi/single_home/common/linemarker1/${spots.length + 1}.png`,
