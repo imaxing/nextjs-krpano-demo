@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useState, useCallback } from 'react'
+import { toast } from 'react-toastify'
 const SingleScene = dynamic(() => import('@/components/single-scene'))
 
 export default function HotSpots(props) {
@@ -28,5 +29,5 @@ export default function HotSpots(props) {
     }
   ])
 
-  return <SingleScene images={images} spots={spots} onClick={onCreteHotSpot} />
+  return <SingleScene images={images} spots={spots} onClick={onCreteHotSpot} onSpotClick={spot => toast(spot.name)} />
 }
