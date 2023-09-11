@@ -1,64 +1,14 @@
-'use client'
-import { getScenes } from '@/utils/mock'
-import { useState, useEffect } from 'react'
-import ScenesSwitch from '@/components/scenes-switch'
-import ModelViewer from '@/components/model-viewer'
-import Loading from '@/components/loading'
-import FullFixedWrapper from '@/components/full-fixed-wrapper'
-import { Krpano, Scene, View, Hotspot, Events } from '@0xllllh/react-krpano'
+import Link from 'next/link'
 
 export default function App() {
-  const [scenes, setScenes] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [scene, setScene] = useState('')
-  const [model, setModel] = useState({})
-
-  useEffect(() => {
-    setLoading(true)
-    getScenes().then(data => {
-      setScenes(data)
-      setScene(data[0].name)
-      setLoading(false)
-    })
-  }, [])
-
-  if (loading || !scenes.length) return <Loading />
-
   return (
-    <div>
-      {model.url && (
-        <FullFixedWrapper className='flex items-center justify-center'>
-          <ModelViewer model={model} />
-
-          <button
-            className='fixed left-[20px] z-[99999999999999] top-[20px] bg-[#0F0F0F] text-[#fff] px-[15px] py-[8px] rounded-md'
-            onClick={() => setModel({})}
-          >
-            返回
-          </button>
-        </FullFixedWrapper>
-      )}
-
-      <Krpano currentScene={scene}>
-        {scenes.map(scene => {
-          const { spots = [], images = [], name } = scene
-          return (
-            <Scene key={name} name={name} images={images}>
-              {spots.map(spot => {
-                return <Hotspot key={spot.name} {...spot} onClick={() => setModel(spot.data)} />
-              })}
-            </Scene>
-          )
-        })}
-
-        <View fov={90} fovmin={80} fovmax={120} />
-
-        <Events
-          onClick={renderer => {
-            console.log(renderer)
-          }}
-        />
-      </Krpano>
+    <div class='w-[50%] mx-auto my-[10vh] text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+      <Link class='block w-full p-6  border-b border-gray-200 rounded-t-lg dark:border-gray-600' href='/example'>
+        渲染示例
+      </Link>
+      <Link class='block w-full p-6  border-b border-gray-200 rounded-t-lg dark:border-gray-600' href='/spots'>
+        添加热点
+      </Link>
     </div>
   )
 }
