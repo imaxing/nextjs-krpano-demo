@@ -16,8 +16,7 @@ export default function HotSpots(props) {
         atv: y,
         url: `https://www.yeecai.com/cheshi/single_home/common/linemarker1/${spots.length + 1}.png`,
         width: 40,
-        height: 40,
-        scale: 1
+        height: 40
       }
     ])
   }, [])
@@ -25,9 +24,18 @@ export default function HotSpots(props) {
   const [images] = useState([
     {
       type: 'cube',
-      url: 'https://qhyxpicoss.kujiale.com/r/2017/09/01/L3D221IS3QKUQUQBOGAPEK3P3XU888_7500x1250.jpg_%s'
+      url: 'https://qhyxpicoss.kujiale.com/r/2017/12/25/L3D221I5P2YEIUG5TL4MUG3P3XE888_7500x1250.jpg_%s'
     }
   ])
 
-  return <SingleScene images={images} spots={spots} onClick={onCreteHotSpot} onSpotClick={spot => toast(spot.name)} />
+  return (
+    <SingleScene
+      fovmin={140}
+      fovmax={140}
+      images={images}
+      spots={spots}
+      onClick={onCreteHotSpot}
+      onSpotClick={spot => toast(spot.name)}
+    />
+  )
 }
