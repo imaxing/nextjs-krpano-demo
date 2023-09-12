@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import ModelPreview from '@/components/model-preview'
 import SingleScene from '@/components/single-scene'
 import HotSpotImage from '@/assets/hotspot.png'
@@ -31,7 +31,11 @@ export default function App() {
 
   return (
     <div>
-      {model.url && <ModelPreview model={model} onBack={() => setModel({})} />}
+      {model.url && (
+        <Suspense fallback={<div>loading</div>}>
+          <ModelPreview model={model} onBack={() => setModel({})} />
+        </Suspense>
+      )}
       <SingleScene onSpotClick={spot => setModel({ url: spot.model })} images={images} spots={spots} />
     </div>
   )

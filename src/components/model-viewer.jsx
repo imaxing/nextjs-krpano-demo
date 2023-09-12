@@ -1,4 +1,3 @@
-'use client'
 import React, { Suspense } from 'react'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { OrbitControls, Environment, Html, useProgress } from '@react-three/drei'
