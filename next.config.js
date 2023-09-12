@@ -5,5 +5,6 @@ module.exports = {
   output: 'export',
   distDir: 'dist',
   basePath: BASE_PATH,
+  assetPrefix: BASE_PATH,
   env: { BASE_PATH }
 }
