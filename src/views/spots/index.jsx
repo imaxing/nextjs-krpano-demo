@@ -1,9 +1,6 @@
-'use client'
-
-import dynamic from 'next/dynamic'
 import { useState, useCallback } from 'react'
 import { toast } from 'react-toastify'
-const SingleScene = dynamic(() => import('@/components/single-scene'))
+import SingleScene from '@/components/single-scene'
 
 export default function HotSpots(props) {
   const [spots, setSpots] = useState(props.spots || [])

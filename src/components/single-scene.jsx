@@ -1,5 +1,3 @@
-'use client'
-
 import { Krpano, Scene, View, Hotspot, Events } from '@0xllllh/react-krpano'
 
 export default function SingleScene(props) {

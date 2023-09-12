@@ -1,10 +1,7 @@
-'use client'
-
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
-const ModelPreview = dynamic(() => import('@/components/model-preview'))
-const SingleScene = dynamic(() => import('@/components/single-scene'))
-
+import ModelPreview from '@/components/model-preview'
+import SingleScene from '@/components/single-scene'
+import HotSpotImage from '@/assets/hotspot.png'
 export default function App() {
   const [model, setModel] = useState({})
   const [images] = useState([
@@ -20,7 +17,7 @@ export default function App() {
       type: 'image',
       ath: -30,
       atv: 20,
-      url: `${process.env.BASE_PATH}/static/hotspot.png`
+      url: HotSpotImage
     },
     {
       model: 'https://www.yeecai.com/cheshi/models/Model.glb',
@@ -28,15 +25,7 @@ export default function App() {
       type: 'image',
       ath: 0,
       atv: 20,
-      url: `${process.env.BASE_PATH}/static/hotspot.png`
-    },
-    {
-      model: `${process.env.BASE_PATH}/static/tree.gltf`,
-      name: 'hotspot3',
-      type: 'image',
-      ath: 30,
-      atv: 20,
-      url: `${process.env.BASE_PATH}/static/hotspot.png`
+      url: HotSpotImage
     }
   ])
 
