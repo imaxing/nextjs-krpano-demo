@@ -11,7 +11,12 @@ export default function SingleScene(props) {
         ))}
       </Scene>
 
-      <View fov={90} fovmin={80} fovmax={120} />
+      <View
+        fov={props.fov || 130}
+        fovmin={props.fovmin || 30}
+        fovmax={props.fovmax || 150}
+        fovtype={props.fovtype || 'HFOV'}
+      />
 
       <Events
         onClick={renderer => {
